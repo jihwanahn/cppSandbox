@@ -5,6 +5,7 @@
 #include <algorithm>
 #include <map>
 #include <array>
+#include <cctype>
 
 using namespace std;
 
@@ -110,10 +111,60 @@ void UntilGetOne(int N = 0, int K = 0) {
 	cout << MinCount << endl;
 }
 
+void FindDest(int N, vector<string> Route) {
+	vector<vector<int>> map (N * N);
+
+	int x{1}, y{1};
+
+	
+    for(auto point : Route) {
+        if(point == "R" && y != N) {
+			++y;
+        }
+		else if (point == "U" && x != 1) {
+			--x;
+		}
+		else if (point == "D" && x != N) {
+			++x;
+		}
+		else if (point == "L" && y != 1) {
+			--y;
+		}
+    }
+
+	cout << x << " " << y;
+
+}
+
+bool clockcheck(int h, int m, int s) {
+	if (h % 10 == 3 || m / 10 == 3 || m % 10 == 3 || s / 10 == 3 || s % 10 == 3)
+		return true;
+	return false;    
+}
+
+void clockmain() {
+	int h, cnt=0;
+    cin >> h;
+	for(int i = 0; i<=h ; ++i) {
+	    for(int j =0; j<60;++j) {
+	        for(int k = 0 ;k<60;++k) {
+				if (clockcheck(i, j, k)) ++cnt;
+	        }
+	    }
+	}
+
+	cout << cnt;
+}
+
 int main() {
 
 	// Greed done
-	//asdf;
+	/*int i = 5;
+	vector<string> s = {"R","R","R","U","D","D"};
+	FindDest(i, s);*/
+	
+	clockmain();
+
 
 	return 0;
 }
