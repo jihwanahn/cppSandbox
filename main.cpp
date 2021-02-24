@@ -6,6 +6,7 @@
 #include <map>
 #include <array>
 #include <cctype>
+#include <string>
 
 using namespace std;
 
@@ -156,6 +157,38 @@ void clockmain() {
 	cout << cnt;
 }
 
+void ChessKnight() {
+	vector<int> x = {-2, -1, 1, 2, -2 ,-1, 1, 2};
+	vector<int> y = {1, 2, 2, 1, -1, -2, -2, -1};
+
+	string pos;
+	cin >> pos;
+
+	vector<char> col = { 'a','b','c','d','e','f','g','h' };
+
+	int colomn = 0;
+	int row = pos[1] - '0';
+
+	for (int i = 0; i < col.size(); ++i) {
+	    if(pos[0] == col.at(i)) {
+			colomn = i + 1;
+	    }
+	}
+
+	int movement{ 0 };
+
+	for (int i = 0; i < 8; ++i) {
+		int nextRow = row + x[i];
+		int nextCol = colomn + y[i];
+		if(1 <= nextRow && 8 >= nextRow && 1 <= nextCol && 8>=nextCol) {
+			++movement;
+		}
+	}
+
+
+    cout << movement;
+}
+
 int main() {
 
 	// Greed done
@@ -163,7 +196,11 @@ int main() {
 	vector<string> s = {"R","R","R","U","D","D"};
 	FindDest(i, s);*/
 	
-	clockmain();
+	//clockmain();
+
+	
+
+	ChessKnight();
 
 
 	return 0;
